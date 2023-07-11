@@ -1,0 +1,16 @@
+.links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.active {
+    text-decoration: underline;
+    color: red;
+}

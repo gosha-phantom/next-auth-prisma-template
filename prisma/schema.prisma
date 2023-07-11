@@ -11,10 +11,11 @@ datasource db {
 }
 
 model user {
-    ID            Int        @id @default(autoincrement())
-    firstName     String
-    lastName      String
-    userauth_user userauth[] @relation("userauth_user")
+    ID             Int         @id @default(autoincrement())
+    firstName      String
+    lastName       String
+    userauth_user  userauth[]  @relation("userauth_user")
+    userauth2_user userauth2[] @relation("userauth2_user")
 }
 
 model userauth {
@@ -23,4 +24,12 @@ model userauth {
     login    String
     password String
     user     user   @relation("userauth_user", fields: [userID], references: [ID])
+}
+
+model userauth2 {
+    id       Int    @id @default(autoincrement())
+    userID   Int
+    login    String
+    password String
+    user     user   @relation("userauth2_user", fields: [userID], references: [ID])
 }

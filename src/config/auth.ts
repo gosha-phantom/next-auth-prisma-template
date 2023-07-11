@@ -1,5 +1,6 @@
 import type { AuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import prisma from '@/config/prisma'; 
 
 export const authConfig: AuthOptions = {
     providers: [
@@ -13,7 +14,7 @@ export const authConfig: AuthOptions = {
             credentials: {
               login: { label: "Login", type: "text", placeholder: "Enter your login" },
               password: { label: "Password", type: "password" }
-            },
+            },            
             async authorize(credentials, req) {
                 //
                 if (!credentials || !credentials.login || ! credentials.password) {

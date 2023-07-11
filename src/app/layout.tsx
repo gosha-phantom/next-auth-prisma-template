@@ -1,28 +1,33 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import Link from 'next/link';
+import Navigation from '@/components/Navigation';
+import { NavLink } from '@/components/Navigation';
+import { Providers } from '@/components/Providers'; 
 import styles from './layout.module.css';
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Next Auth Prisma',
-  description: 'Next Auth Prisma',
+    title: 'Next Auth Prisma',
+    description: 'Next Auth Prisma',
 }
+
+const navLinks: NavLink[] = [
+    { label: 'Main', href: '/' },
+    { label: 'About', href: '/about' },
+    // { label: 'Profile', href: '/profile' },
+    // { label: 'App Log In', href: '/api/auth/signin' },
+    // { label: 'Custom Log In', href: '/signin' },
+]
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-        <body className={inter.className}>
-            <nav className={styles.links}>
-                <Link href='/' className={styles.link}>Main</Link>
-                <Link href='/about' className={styles.link}>About</Link>
-                <Link href='/profile' className={styles.link}>Profile</Link>
-                <Link href='/auth/login' className={styles.link}>Log In</Link>
-                <Link href='/signin' className={styles.link}>Custom SignIn</Link>
-            </nav>
-            <main>{children}</main>
+        <body>
+          <Providers>
+            <Navigation navLinks={navLinks}/>
+            <main className={styles.page}>{children}</main>
+          </Providers>
         </body>
     </html>
   )
